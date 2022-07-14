@@ -1,0 +1,19 @@
+<input
+    type="text"
+    placeholder="name"
+    [(ngModel)]="productpageService.productName"
+    (keyup)="productpageService.onKeyUpProductInput($event)"
+>
+<button (click)="productpageService.createProduct()">Create</button>
+<nav>
+    <ul>
+        <li><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">BACK</a></li>
+    </ul>
+</nav>
+<div *ngFor="let product of productpageService.allProductsSub$ | async">
+    <div>
+        <span (click)="productpageService.openProductPopup(product)">{{product.name}}</span>
+        <span>Price: </span><span>{{product.price}}</span>
+        <button (click)="productpageService.deleteProduct(product.id)">delete</button>
+    </div>
+</div>

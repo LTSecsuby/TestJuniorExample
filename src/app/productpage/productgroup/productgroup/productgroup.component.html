@@ -1,0 +1,28 @@
+<input
+    type="text"
+    placeholder="name"
+    [(ngModel)]="productpageService.productName"
+    (keyup)="productpageService.onKeyUpProductInput($event)"
+>
+<button (click)="productpageService.createProduct()">Create</button>
+<nav>
+    <ul>
+        <li><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">BACK</a></li>
+    </ul>
+</nav>
+<div class="card-wrapper">
+    <div *ngFor="let product of productpageService.allProductsSub$ | async">
+        <mat-card (click)="productpageService.openProductPopup(product)">
+            <mat-card-title>
+                <div>{{product.name}}</div>
+            </mat-card-title>
+            <mat-card-content>
+                <span>Price: </span><span>{{product.price}}</span>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)="productpageService.deleteProduct(product.id)">delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
