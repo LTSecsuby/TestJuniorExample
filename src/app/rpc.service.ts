@@ -26,9 +26,7 @@ export class RpcService {
       return of(RpcService._productList.filter(p => p.id === id)[0] || null);
     },
     list: (): Observable<Product[]> => {
-      return of(
-        RpcService._productList
-      );
+      return of(RpcService._productList);
     },
     create: (name: any): Observable<string> => {
       const newProduct: Product = { id: 'productID' + (RpcService._productList.length + 1), name, price: 10 };
